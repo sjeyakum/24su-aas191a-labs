@@ -1,0 +1,113 @@
+<html lang="en">
+<head>
+    <title>Favorite ASUCLA Restaurants</title>
+    <meta property="og:description" content="Add an icon to the map from an external URL and use it in a symbol layer." />
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@4.5.0/dist/maplibre-gl.css' />
+    <script src='https://unpkg.com/maplibre-gl@4.5.0/dist/maplibre-gl.js'></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<script>
+    const map = new maplibregl.Map({
+        container: 'map',
+        style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
+        center: [-118.4452, 34.0689], // Coordinates for UCLA campus
+        zoom: 15,
+    });
+
+    map.on('load', async () => {
+        // Music Café: Cinnamon Roll Icon
+        let image = await map.loadImage('https://cdn-icons-png.flaticon.com/256/10775/10775777.png');
+        map.addImage('cin-roll', image);
+        map.addSource('point-cin-roll', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+                    {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-118.441978, 34.070290]
+                        }
+                    }
+                ]
+            }
+        });
+        map.addLayer({
+            'id': 'points-cin-roll',
+            'type': 'symbol',
+            'source': 'point-cin-roll',
+            'layout': {
+                'icon-image': 'cin-roll',
+                'icon-size': 0.75
+            }
+        });
+
+        // Yoshinoya: Chicken Teriyaki Bowl Icon
+        image = await map.loadImage('https://static.vecteezy.com/system/resources/previews/036/085/711/original/ai-generated-chicken-teriyaki-bowl-on-transparent-background-png.png');
+        map.addImage('bowl', image);
+        map.addSource('point-bowl', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+                    {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-118.440530, 34.067660]
+                        }
+                    }
+                ]
+            }
+        });
+        map.addLayer({
+            'id': 'points-bowl',
+            'type': 'symbol',
+            'source': 'point-bowl',
+            'layout': {
+                'icon-image': 'bowl',
+                'icon-size': 0.75
+            }
+        });
+
+        // Northern Lights Café: Sandwich Icon
+        image = await map.loadImage('https://png.pngtree.com/png-clipart/20230917/original/pngtree-sandwich-icon-icon-illustration-vector-png-image_12290588.png');
+        map.addImage('panini', image);
+        map.addSource('point-panini', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+                    {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-118.442370, 34.075330]
+                        }
+                    }
+                ]
+            }
+        });
+        map.addLayer({
+            'id': 'points-panini',
+            'type': 'symbol',
+            'source': 'point-panini',
+            'layout': {
+                'icon-image': 'panini',
+                'icon-size': 0.75
+            }
+        });
+    });
+</script>
+</body>
+</html>
+

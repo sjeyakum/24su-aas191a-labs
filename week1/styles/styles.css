@@ -1,6 +1,6 @@
 /* The * selects everything and acts as a global reset to ensure consistency across browsers */
 * {
-    font-family: Arial, sans-serif; /* Sets a default font for the whole page */
+    font-family: 'Arial Narrow Bold'; /* Sets a default font for the whole page */
     margin: 0; /* Removes default margins */
     padding: 0; /* Removes default padding */
     box-sizing: border-box; /* Makes sure borders and paddings are included in the element's total width and height */
@@ -53,7 +53,7 @@ main {
 
 #map { 
     grid-area: map; /* Assigns the map section to its grid area */
-    height: 10vh; /* Sets the map's height to 80% of the viewport height */
+    height: 80vh; /* Sets the map's height to 80% of the viewport height */
 }
 
 footer { 
