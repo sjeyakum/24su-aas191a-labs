@@ -10,5 +10,5 @@ const map = new maplibregl.Map({
 new maplibregl.Marker()
     .setLngLat([ -118.444, 34.0709])
     .setPopup(new maplibregl.Popup({ offset: 25 }) // Add popups
-        .setHTML('Math Sciences 4328 aka the Technology Sandbox<br> is the lab where I used to work in '))
+    .setHTML('Math Sciences 4328 aka the Technology Sandbox<br> is the lab where I used to work in '))
     .addTo(map);

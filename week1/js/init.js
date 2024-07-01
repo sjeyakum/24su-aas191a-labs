@@ -1,7 +1,7 @@
 // Initialize the map
 const map = new maplibregl.Map({
     container: 'map', // container ID
-    style: 'https://api.maptiler.com/maps/streets/style.json?key=Ys8M26sEZuipk59gs2Ph', // Your style URL
+    style: 'https://api.maptiler.com/maps/winter-v2/style.json?key=c3HvchgEowpK8lsOGEc4', // Your style URL
     center: [-118.444, 34.0709], // Starting position [lng, lat]
     zoom: 15,
     pitch: 45,
@@ -9,7 +9,7 @@ const map = new maplibregl.Map({
     antialias: true
 });
 
-const MAPTILER_KEY = 'Ys8M26sEZuipk59gs2Ph';
+const MAPTILER_KEY = 'c3HvchgEowpK8lsOGEc4';
 
 map.on('load', () => {
     // Insert the layer beneath any symbol layer.
@@ -79,3 +79,9 @@ new maplibregl.Marker()
         .setHTML('<div><b>Northern Lights Café</b><br/><img src="https://png.pngtree.com/png-clipart/20230917/original/pngtree-sandwich-icon-icon-illustration-vector-png-image_12290588.png" width="100"/><br/>It is convenient that the café is located right next to YRL. I love their chicken pesto panini!</div>'))
     .addTo(map);
 
+// Add a marker to the map
+const powellMarker = new maplibregl.Marker()
+    .setLngLat([-118.44215163554014, 34.07164577602181])
+    .setPopup(new maplibregl.Popup({ offset: 25}) // Add popups
+    .setHTML('<div class="library">Powell Library <tags> #library </tags></div>'))
+    .addTo(map);

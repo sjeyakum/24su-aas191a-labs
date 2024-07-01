@@ -8,7 +8,7 @@
 
 /* Sets the background color of the whole page and ensures content fits the screen height */
 html {
-    background-color: aqua; /* Sets a light blue background color */
+    background-color: rgb(145,168,209); /* Sets a light blue background color */
 }
 
 /* Applies to both <html> and <body> */
@@ -48,7 +48,7 @@ main {
 
 .portfolio {
     grid-area: portfolio; /* Assigns the portfolio section to its grid area */
-    background-color: red;
+    background-color: rgb(247,202,201);
 }
 
 #map { 
@@ -56,6 +56,18 @@ main {
     height: 80vh; /* Sets the map's height to 80% of the viewport height */
 }
 
-footer { 
+#footer { 
     grid-area: footer; /* Assigns the footer to its grid area */
+    padding: 1rem;
+    background-color: #1b3e5a; /* Sets a darker background for contrast */
+    color: #fff; /* Ensures text is readable against the dark background */
+    text-align: center; /* Centers the footer content */
+}
+
+.library {
+    background-color: rgb(241, 241, 128);
+}
+
+ul {
+    padding-left: 15px;
 }
