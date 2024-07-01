@@ -1,7 +1,7 @@
 // Initialize the map
 const map = new maplibregl.Map({
     container: 'map', // container ID
-    style: 'https://api.maptiler.com/maps/streets/style.json?key=wsyYBQjqRwKnNsZrtci1', // Your style URL
+    style: 'https://api.maptiler.com/maps/streets/style.json?key=Ys8M26sEZuipk59gs2Ph', // Your style URL
     center: [-118.444, 34.0709], // Starting position [lng, lat]
     zoom: 15,
     pitch: 45,
@@ -9,7 +9,7 @@ const map = new maplibregl.Map({
     antialias: true
 });
 
-const MAPTILER_KEY = 'wsyYBQjqRwKnNsZrtci1';
+const MAPTILER_KEY = 'Ys8M26sEZuipk59gs2Ph';
 
 map.on('load', () => {
     // Insert the layer beneath any symbol layer.
