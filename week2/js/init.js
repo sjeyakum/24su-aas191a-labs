@@ -1,42 +1,64 @@
-// original code
+// Initialize the map
 const map = new maplibregl.Map({
     container: 'map', // container ID
     style: 'https://api.maptiler.com/maps/streets-v2-light/style.json?key=wsyYBQjqRwKnNsZrtci1', // Your style URL
-    center: [-118.4430,34.0691], // Starting position [lng, lat]
-    zoom: 15 // Starting zoom level
+    center: [-118.46799975901826,34.04025541111296], // Starting position [lng, lat] 34.04025541111296, -118.46799975901826
+    zoom: 12 // Starting zoom level
 });
 
-new maplibregl.Marker()
-    .setLngLat([ -118.444, 34.0709])
-    .setPopup(new maplibregl.Popup({ offset: 25 }) // Add popups
-        .setHTML('Math Sciences 4328 aka the Technology Sandbox<br> is the lab where I used to work in '))
-    .addTo(map);
-
 // adding markers
-let ucla;
-let metro;
-let games;
+// let, new, function, and const are keywords! variables cannot be keywords
 
-// let is more flexible than const
-//number
-// let box1 = 5;
-// let box2 = 5.0;
+function addMarker(latitude,longitude,title,message){ 
+    new maplibregl.Marker()
+        .setLngLat([longitude,latitude])
+        .setPopup(new maplibregl.Popup()
+            .setHTML(`<h2>${title}</h2><h4>${message}</h4>`)
+            )   
+        .addTo(map)
+    createButtons(latitude,longitude,title);
+}
 
-//string
-// let box3 = 'five';
-// let box4 = "five";
+addMarker(34.039216040007375, -118.4425111543923, "Chinchikurin","The pan-fried noodles here are amazing!")
+addMarker(34.058362622167536, -118.41699844344514,"Din Tai Fung","I always get the chocolate dumplings here for dessert!")
+addMarker(34.050568696525715, -118.46014294375658,"Sham India's Oven","I once got free samosas because I spoke the same South Indian language as the chef")
+addMarker(34.05953525344204, -118.4451484901527,"Tulsi","They have the best lunch combo options here. I recommend trying out their paneer masala.")
+addMarker(34.015413613125325, -118.4979674083517, "Elephanté","The rosé pasta was so delicious! I don't go here regularly becuase it's expensive, but it's a great fine dining restaurant.")
 
-// string literal, uses backticks and ${variable} to bring in another variable
-// let box5 = `this is from box #4: ${box4}`;
+function createButtons(latitude,longitude,title){
+    const newButton = document.createElement("button"); 
+    newButton.id = "button" + title; 
+    newButton.innerHTML = title; 
 
-// array (also known as a list)
-// let box6 = [1,2,3,4,5]; 
+    // added image
+    const img = document.createElement("img");
+    img.src = "plate.png";
+    img.style.width = "20repx";
+    img.style.height = "20px";
+    newButton.appendChild(img);
 
-// object, stores variables together, can be of different types!
-// let box7 = {"number": 'five', "value":5};
+    newButton.setAttribute("lat",latitude); 
+    newButton.setAttribute("lng",longitude); 
+    newButton.addEventListener('click', function(){
+        map.flyTo({
+            center: [longitude,latitude], 
+        })
+    })
+    document.getElementById("contents").appendChild(newButton); 
+}
 
-// boolean (true or false)
-// let box8 = true;
+const btn = document.querySelector("#changeColorBtn");
 
-// null value
-// let emptyBox;
+// light pink, light orange, light red background colors
+const colors = ['#ffb6c1', '#ffcc99', '#ff9999'];
+
+function getRandomIndex(max) {
+    return Math.floor(Math.random() * max);
+}
+
+btn.addEventListener("click", () => {
+    const index = getRandomIndex(colors.length);
+    const rndCol = colors[index];
+    document.documentElement.style.backgroundColor = rndCol; // Change background color of <html> element
+    // document.body.style.backgroundColor = rndCol;
+});
