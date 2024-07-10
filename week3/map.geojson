@@ -1,0 +1,53 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "Name": "Chinchikurin",
+          "Place": "Sawtelle",
+          "Specialty": "pan-fried noodles"
+        },
+        "geometry": {
+          "coordinates": [
+            -118.44250956442002,
+            34.03900127278904
+          ],
+          "type": "Point"
+        },
+        "id": 1
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "Name": "Tulsi",
+          "Specialty": "paneer masala",
+          "Place": "Westwood"
+        },
+        "geometry": {
+          "coordinates": [
+            -118.4451174394033,
+            34.05933863192463
+          ],
+          "type": "Point"
+        },
+        "id": 2
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "Name": "Din Tai Fung",
+          "Place": "Century City",
+          "Specialty": "chocolate dumplings"
+        },
+        "geometry": {
+          "coordinates": [
+            -118.41739218778798,
+            34.05823475646888
+          ],
+          "type": "Point"
+        },
+        "id": 2
+      }
+    ]
+  }
