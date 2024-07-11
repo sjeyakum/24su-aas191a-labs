@@ -1,11 +1,7 @@
-// week 3 lab activity
-
-const coordinate = [-118.4430,34.0691];
-let zoomLevel = 15;
-
+// week 3
 let mapObjects = {
     "coordinate": [-118.4430,34.0691],
-    "zoomLevel": 12
+    "zoomLevel": 8
 }
 
 // Initialize the map
@@ -27,33 +23,57 @@ function addMarker(lat,lng,title,message){
     return message
 }
 
-function createButtons(lat,lng,title){
+function createButtons(latitude,longitude,title){
     const newButton = document.createElement("button"); 
-    newButton.id = "button"+title; 
-    newButton.innerHTML = title; 
-    newButton.setAttribute("lat",lat); 
-    newButton.setAttribute("lng",lng); 
+    newButton.id = "button" + title; 
+    newButton.style.display = "inline-flex"; // text in line  
+    newButton.style.alignItems = "center"; // text centered vertically 
+    newButton.style.justifyContent = "center"; // text centered horizontally
+    newButton.style.backgroundColor = 'transparent';
+    newButton.style.border = "none";
+    newButton.style.margin =  "10px";
+    newButton.style.cursor = "pointer"; 
+    newButton.style.fontSize = "14px";         
+    newButton.style.fontFamily = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
+    newButton.style.padding = "5px 10px";
+
+    newButton.style.backgroundImage = "url('puzzle.jpg')"; // image URL
+    newButton.style.backgroundSize = "contain"; // contain image in button
+    newButton.style.backgroundRepeat = "no-repeat"; 
+    newButton.style.width = "110px"; // button width
+    newButton.style.height = "50px"; // button height
+    
+    // add image
+    // const img = document.createElement("img");
+    // img.src = "plate.png";
+    // img.style.width = "30px";
+    // img.style.height = "20px";
+    // img.style.marginRight = "5px"; // gap
+
+    // dim button
+    newButton.style.transition = "opacity 0.3s ease"; 
+    newButton.addEventListener('mouseenter', function() {
+        newButton.style.opacity = 0.6;
+    });
+    newButton.addEventListener('mouseleave', function() {
+        newButton.style.opacity = 1.5;
+    });
+
+    // append
+    // newButton.appendChild(img);
+    newButton.innerHTML += title; 
+
+    newButton.setAttribute("lat",latitude); 
+    newButton.setAttribute("lng",longitude); 
     newButton.addEventListener('click', function(){
         map.flyTo({
-            center: [lng,lat],
+            center: [longitude,latitude], 
         })
     })
-    document.getElementById("contents").appendChild(newButton);
+    document.getElementById("contents").appendChild(newButton); 
 }
 
-function processData(results){
-    console.log(results)
-    results.features.forEach(result => {
-        let coordinates = results.geometry.coordinates
-        let longitude = coordiantes[0]
-        let latitude = coordinates[1]
-        let title = result.properties.title;
-        let message = result.properties.message
-        consolelog(result)
-        addMarker(result.)
-    })
-}
-
+// GeoJSON data
 map.on('load', function() {
     console.log("This is the map!")
     fetch("map.geojson")
@@ -63,7 +83,17 @@ map.on('load', function() {
         });
 });
 
-function processData(data) {
-    console.log("Map is loading!")
-    console.log(data);
+function processData(results){
+    console.log(results)
+    // results.features.forEach(result => {
+    for (let i = 0; i < results.features.length; i++) {
+        let coordinates = results.features[i].geometry.coordinates;  // coordinates array      
+        let longitude = coordinates[0]
+        let latitude = coordinates[1]
+        let name = results.features[i].properties.Name;
+        let place = results.features[i].properties.Place;
+        let room = results.features[i].properties.FavoriteRoom;
+        console.log(results);
+        addMarker(latitude, longitude, name, `${place}: ${room}`);
+    }
 }

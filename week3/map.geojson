@@ -4,14 +4,30 @@
       {
         "type": "Feature",
         "properties": {
-          "Name": "Chinchikurin",
-          "Place": "Sawtelle",
-          "Specialty": "pan-fried noodles"
+          "Name": "Unlocked",
+          "Place": "Costa Mesa",
+          "FavoriteRoom": "Return of the Magician"
         },
         "geometry": {
           "coordinates": [
-            -118.44250956442002,
-            34.03900127278904
+            -117.91853872552525,
+            33.67107390389724
+          ],
+          "type": "Point"
+        },
+        "id": 0
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "Name": "Enchanted Escape Room",
+          "Place": "Northridge",
+          "FavoriteRoom": "Spellbound"
+        },
+        "geometry": {
+          "coordinates": [
+            -118.55320659094737,
+            34.220724073231935
           ],
           "type": "Point"
         },
@@ -20,30 +36,14 @@
       {
         "type": "Feature",
         "properties": {
-          "Name": "Tulsi",
-          "Specialty": "paneer masala",
-          "Place": "Westwood"
+          "Name": "The Basement",
+          "Place": "Sylmar",
+          "FavoriteRoom": "Elevator Shaft"
         },
         "geometry": {
           "coordinates": [
-            -118.4451174394033,
-            34.05933863192463
-          ],
-          "type": "Point"
-        },
-        "id": 2
-      },
-      {
-        "type": "Feature",
-        "properties": {
-          "Name": "Din Tai Fung",
-          "Place": "Century City",
-          "Specialty": "chocolate dumplings"
-        },
-        "geometry": {
-          "coordinates": [
-            -118.41739218778798,
-            34.05823475646888
+            -118.41555888347814,
+            34.294291875859315
           ],
           "type": "Point"
         },

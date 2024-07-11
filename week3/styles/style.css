@@ -67,7 +67,7 @@ main {
 }
 
 #contents{
-    /* padding-top: 20px; /* Adjust the value as needed */
+    padding-top: 20px; /* Adjust the value as needed */
     display: flex;
     justify-content: center;
     align-items: center;
