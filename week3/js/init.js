@@ -33,22 +33,17 @@ function createButtons(latitude,longitude,title){
     newButton.style.border = "none";
     newButton.style.margin =  "10px";
     newButton.style.cursor = "pointer"; 
-    newButton.style.fontSize = "14px";         
+    newButton.style.fontSize = "16px";         
     newButton.style.fontFamily = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
     newButton.style.padding = "5px 10px";
 
     newButton.style.backgroundImage = "url('puzzlepiece.png')"; // image URL
-    newButton.style.backgroundSize = "contain"; // contain image in button
+    newButton.style.backgroundSize = "contain"; // contain or cover image in button
+    newButton.style.backgroundPosition = "center";
     newButton.style.backgroundRepeat = "no-repeat"; 
-    newButton.style.width = "110px"; // button width
-    newButton.style.height = "50px"; // button height
-    
-    // add image
-    // const img = document.createElement("img");
-    // img.src = "plate.png";
-    // img.style.width = "30px";
-    // img.style.height = "20px";
-    // img.style.marginRight = "5px"; // gap
+    newButton.style.width = "220px"; // button width
+    newButton.style.height = "100px"; // button height
+
 
     // dim button
     newButton.style.transition = "opacity 0.3s ease"; 
@@ -70,7 +65,7 @@ function createButtons(latitude,longitude,title){
             center: [longitude,latitude], 
         })
     })
-    document.getElementById("contents").appendChild(newButton); 
+    document.getElementById("contents").appendChild(newButton);
 }
 
 // GeoJSON data
@@ -81,6 +76,17 @@ map.on('load', function() {
         .then(data => {
             processData(data); // Call processData with the fetched data
         });
+    map.addLayer({
+        id: 'markers',
+        type: 'symbol',
+        source: 'markers',
+        layout: {
+            'icon-image': ['get', 'markerUrl'], // Use the markerUrl property from GeoJSON for the icon image
+            'icon-size': 1.5, // Adjust the size of the icons if needed
+            'icon-allow-overlap': true, // Allow icons to overlap
+            'icon-anchor': 'bottom' // Adjust the anchor point of the icon if needed
+        }
+    });
 });
 
 function processData(results){
