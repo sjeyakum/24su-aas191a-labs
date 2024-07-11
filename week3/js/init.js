@@ -37,7 +37,7 @@ function createButtons(latitude,longitude,title){
     newButton.style.fontFamily = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
     newButton.style.padding = "5px 10px";
 
-    newButton.style.backgroundImage = "url('puzzle.jpg')"; // image URL
+    newButton.style.backgroundImage = "url('puzzlepiece.png')"; // image URL
     newButton.style.backgroundSize = "contain"; // contain image in button
     newButton.style.backgroundRepeat = "no-repeat"; 
     newButton.style.width = "110px"; // button width
