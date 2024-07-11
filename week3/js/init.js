@@ -41,6 +41,19 @@ function createButtons(lat,lng,title){
     document.getElementById("contents").appendChild(newButton);
 }
 
+function processData(results){
+    console.log(results)
+    results.features.forEach(result => {
+        let coordinates = results.geometry.coordinates
+        let longitude = coordiantes[0]
+        let latitude = coordinates[1]
+        let title = result.properties.title;
+        let message = result.properties.message
+        consolelog(result)
+        addMarker(result.)
+    })
+}
+
 map.on('load', function() {
     console.log("This is the map!")
     fetch("map.geojson")
