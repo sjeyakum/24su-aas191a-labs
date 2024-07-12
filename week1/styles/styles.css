@@ -39,7 +39,6 @@ main {
 /* Grid area assignments for each major section, linking them to their respective areas in the grid */
 header { 
     grid-area: header; /* Assigns the header to its grid area */
-    
 }
 
 main { 
@@ -49,6 +48,14 @@ main {
 .portfolio {
     grid-area: portfolio; /* Assigns the portfolio section to its grid area */
     background-color: rgb(247,202,201);
+    /* display: flex;
+    flex-direction: column;
+    padding: 20px; Add padding around the portfolio content */
+}
+
+.portfolio img {
+    padding: 10px; /* Add padding around each image */
+    justify-content: center;
 }
 
 #map { 
@@ -68,6 +75,20 @@ main {
     background-color: rgb(241, 241, 128);
 }
 
+
 ul {
-    padding-left: 15px;
+    padding-left: 50px;
 }
+
+h1 {
+    padding-left: 30px;
+}
+
+h2 {
+    padding-left: 30px;
+}
+
+p {
+    padding-left: 30px;
+}
+
