@@ -13,22 +13,54 @@ const map = new maplibregl.Map({
 });
 
 function addMarker(lat,lng,title,message){
-    let popup_message = `<h2>${title}</h2> <h3>${message}</h3>`
-    new maplibregl.Marker()
-        .setLngLat([lng, lat])
-        .setPopup(new maplibregl.Popup()
-            .setHTML(popup_message))
-        .addTo(map)
+    let popup_message = `<h3>${title}</h3> <h4>${message}</h4>`
+    
+    // create custom marker 
+    let marker = new maplibregl.Marker({
+            element: createCustomMarkerElement('key.png', title, message)
+
+        })       
+        .setLngLat([lng,lat])
+        .setPopup(new maplibregl.Popup({
+            maxWidth: "300px",
+            className: "custom-popup"
+        })
+        .setHTML(popup_message))
+        .addTo(map);
+
     createButtons(lat,lng,title);
-    return message
+    return message;
+}
+
+function createCustomMarkerElement(iconUrl, title, message) {
+    let markerElement = document.createElement('div');
+    markerElement.className = 'custom-marker';
+    markerElement.style.backgroundImage = `url('${iconUrl}')`;
+    markerElement.style.backgroundSize = 'cover';
+    markerElement.style.width = '50px';
+    markerElement.style.height = '50px';
+    markerElement.style.cursor = 'pointer';
+
+    markerElement.style.transition = "opacity 0.3s ease"; 
+    markerElement.addEventListener('mouseenter', function() {
+        markerElement.style.opacity = 0.6;
+    });
+    markerElement.addEventListener('mouseleave', function() {
+        markerElement.style.opacity = 1.5;
+    });
+
+    markerElement.title = title;
+    markerElement.message = message;
+
+    return markerElement;
 }
 
 function createButtons(latitude,longitude,title){
     const newButton = document.createElement("button"); 
     newButton.id = "button" + title; 
-    newButton.style.display = "inline-flex"; // text in line  
-    newButton.style.alignItems = "center"; // text centered vertically 
-    newButton.style.justifyContent = "center"; // text centered horizontally
+    newButton.style.display = "inline-flex"; 
+    newButton.style.alignItems = "center";  
+    newButton.style.justifyContent = "center"; 
     newButton.style.backgroundColor = 'transparent';
     newButton.style.border = "none";
     newButton.style.margin =  "10px";
@@ -44,7 +76,6 @@ function createButtons(latitude,longitude,title){
     newButton.style.width = "220px"; // button width
     newButton.style.height = "100px"; // button height
 
-
     // dim button
     newButton.style.transition = "opacity 0.3s ease"; 
     newButton.addEventListener('mouseenter', function() {
@@ -54,8 +85,6 @@ function createButtons(latitude,longitude,title){
         newButton.style.opacity = 1.5;
     });
 
-    // append
-    // newButton.appendChild(img);
     newButton.innerHTML += title; 
 
     newButton.setAttribute("lat",latitude); 
@@ -71,22 +100,13 @@ function createButtons(latitude,longitude,title){
 // GeoJSON data
 map.on('load', function() {
     console.log("This is the map!")
+
     fetch("map.geojson")
         .then(response => response.json())
         .then(data => {
             processData(data); // Call processData with the fetched data
-        });
-    map.addLayer({
-        id: 'markers',
-        type: 'symbol',
-        source: 'markers',
-        layout: {
-            'icon-image': ['get', 'markerUrl'], // Use the markerUrl property from GeoJSON for the icon image
-            'icon-size': 1.5, // Adjust the size of the icons if needed
-            'icon-allow-overlap': true, // Allow icons to overlap
-            'icon-anchor': 'bottom' // Adjust the anchor point of the icon if needed
-        }
-    });
+        })
+        .catch(error => console.error('Error fetching GeoJSON: ', error));
 });
 
 function processData(results){
@@ -99,7 +119,7 @@ function processData(results){
         let name = results.features[i].properties.Name;
         let place = results.features[i].properties.Place;
         let room = results.features[i].properties.FavoriteRoom;
-        console.log(results);
+
         addMarker(latitude, longitude, name, `${place}: ${room}`);
     }
 }

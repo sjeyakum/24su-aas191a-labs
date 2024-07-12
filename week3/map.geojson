@@ -4,7 +4,6 @@
       {
         "type": "Feature",
         "properties": {
-          "markerUrl": "key.png",
           "Name": "Unlocked",
           "Place": "Costa Mesa",
           "FavoriteRoom": "Return of the Magician"
@@ -21,7 +20,6 @@
       {
         "type": "Feature",
         "properties": {
-          "markerUrl": "key.png",
           "Name": "Enchanted Escape Room",
           "Place": "Northridge",
           "FavoriteRoom": "Spellbound"
@@ -38,7 +36,6 @@
       {
         "type": "Feature",
         "properties": {
-          "markerUrl": "key.png",
           "Name": "The Basement",
           "Place": "Sylmar",
           "FavoriteRoom": "Elevator Shaft"
@@ -55,7 +52,6 @@
       {
         "type": "Feature",
         "properties": {
-          "markerUrl": "key.png",
           "Name": "101 Escape Rooms",
           "Place": "Thousand Oaks",
           "FavoriteRoom": "Starship Libra"
@@ -72,7 +68,6 @@
       {
         "type": "Feature",
         "properties": {
-          "markerUrl": "key.png",
           "Name": "Maze Rooms",
           "Place": "Los Angeles",
           "FavoriteRoom": "Cyberpunk Samurai"
@@ -89,7 +84,6 @@
       {
         "type": "Feature",
         "properties": {
-          "markerUrl": "key.png",
           "Name": "My Greatest Escape",
           "Place": "Santa Paula",
           "FavoriteRoom": "Mission Impossible"
