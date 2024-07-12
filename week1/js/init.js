@@ -1,7 +1,7 @@
 // Initialize the map
 const map = new maplibregl.Map({
     container: 'map', // container ID
-    style: 'https://api.maptiler.com/maps/winter-v2/style.json?key=c3HvchgEowpK8lsOGEc4', // Your style URL
+    style: 'https://api.maptiler.com/maps/winter-v2/style.json?key=wsyYBQjqRwKnNsZrtci1', // Your style URL
     center: [-118.444, 34.0709], // Starting position [lng, lat]
     zoom: 15,
     pitch: 45,
@@ -9,7 +9,7 @@ const map = new maplibregl.Map({
     antialias: true
 });
 
-const MAPTILER_KEY = 'c3HvchgEowpK8lsOGEc4';
+const MAPTILER_KEY = 'wsyYBQjqRwKnNsZrtci1';
 
 map.on('load', () => {
     // Insert the layer beneath any symbol layer.
