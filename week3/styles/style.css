@@ -92,7 +92,7 @@ main {
    border-radius: 5px;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
    font-size: 16px;
-   line-height: 1.5; /* for text */
+   line-height: 1.0; /* for text */
 }
 
 /* typography */
