@@ -55,6 +55,34 @@ function createCustomMarkerElement(iconUrl, title, message) {
     return markerElement;
 }
 
+function createPageLinks() {
+    const labsDiv = document.getElementById('labs');
+
+    const labs = [
+        { text: 'Lab #1', link: 'https://sjeyakum.github.io/24su-aas191a-labs/week1/index.html' },
+        { text: 'Lab #2', link: 'https://sjeyakum.github.io/24su-aas191a-labs/week2/index.html' },
+        { text: 'Lab #3', link: 'https://sjeyakum.github.io/24su-aas191a-labs/week3/index.html' }
+    ];
+
+    labs.forEach(lab => {
+        const a = document.createElement('a');
+        a.href = lab.link;
+        a.style.marginRight = '10px'; // Add some spacing between the buttons
+        
+        const button = document.createElement('button');
+        button.textContent = lab.text;
+        button.classList.add('pagelink-button');
+        button.style.display = 'inline-block'; // Ensure the buttons are displayed inline
+        
+        a.appendChild(button);
+        labsDiv.appendChild(a);
+    });
+}
+
+window.onload = function() {
+    createPageLinks();
+};
+
 function createButtons(latitude,longitude,title){
     const newButton = document.createElement("button"); 
     newButton.id = "button" + title; 
@@ -89,13 +117,29 @@ function createButtons(latitude,longitude,title){
 
     newButton.setAttribute("lat",latitude); 
     newButton.setAttribute("lng",longitude); 
-    newButton.addEventListener('click', function(){
+    newButton.addEventListener('click', function() {
         map.flyTo({
-            center: [longitude,latitude], 
-        })
-    })
+            center: [longitude, latitude],
+        });
+        playSound('sound');
+    });
+
     document.getElementById("contents").appendChild(newButton);
 }
+
+// Play sound function
+function playSound(soundId) {
+    const sound = document.getElementById(soundId);
+    sound.currentTime = 0; // Restart sound from beginning
+    sound.play();
+}
+
+// Example 
+const button = document.getElementById('button');
+
+button.addEventListener('click', function() {
+    playSound('sound');
+});
 
 // GeoJSON data
 map.on('load', function() {
@@ -120,6 +164,6 @@ function processData(results){
         let place = results.features[i].properties.Place;
         let room = results.features[i].properties.FavoriteRoom;
 
-        addMarker(latitude, longitude, name, `${place}: ${room}`);
+        addMarker(latitude, longitude, name, `<span style="font-weight: 600;">Location:</span> ${place}<br><span style="font-weight: 600;">Favorite Room:</span> ${room}`);
     }
 }
