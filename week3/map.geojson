@@ -6,7 +6,8 @@
         "properties": {
           "Name": "Unlocked",
           "Place": "Costa Mesa",
-          "FavoriteRoom": "The Return of the Magician"
+          "FavoriteRoom": "The Return of the Magician",
+          "Link": "https://unlockedoc.com/magic"
         },
         "geometry": {
           "coordinates": [
@@ -22,7 +23,8 @@
         "properties": {
           "Name": "Enchanted Escape Room",
           "Place": "Northridge",
-          "FavoriteRoom": "Spellbound"
+          "FavoriteRoom": "Spellbound",
+          "Link": "https://www.enchantedescaperoom.com/spellbound"
         },
         "geometry": {
           "coordinates": [
@@ -38,7 +40,8 @@
         "properties": {
           "Name": "The Basement",
           "Place": "Sylmar",
-          "FavoriteRoom": "Elevator Shaft"
+          "FavoriteRoom": "Elevator Shaft",
+          "Link": "https://basementescaperoom.com/los-angeles/theelevatorshaft?gad_source=1&gclid=CjwKCAjwtNi0BhA1EiwAWZaANL8gsrtcgWeAKk_2FUxLwQRBMvIFVFtBGb-w3FisN5DXuik4sei8_BoCQ8kQAvD_BwE"
         },
         "geometry": {
           "coordinates": [
@@ -54,7 +57,8 @@
         "properties": {
           "Name": "101 Escape Rooms",
           "Place": "Thousand Oaks",
-          "FavoriteRoom": "Starship Libra"
+          "FavoriteRoom": "Starship Libra",
+          "Link": "https://www.101escaperooms.com/starship-libra"
         },
         "geometry": {
           "coordinates": [
@@ -70,7 +74,8 @@
         "properties": {
           "Name": "Maze Rooms",
           "Place": "Los Angeles",
-          "FavoriteRoom": "Cyberpunk Samurai"
+          "FavoriteRoom": "Cyberpunk Samurai",
+          "Link": "https://mazerooms.com/rooms/cyberpunk-samurai/"
         },
         "geometry": {
           "coordinates": [
@@ -86,7 +91,8 @@
         "properties": {
           "Name": "My Greatest Escape",
           "Place": "Santa Paula",
-          "FavoriteRoom": "Mission Impossible"
+          "FavoriteRoom": "Mission Impossible",
+          "Link": "https://www.mygreatestescape.com/rooms/mission-impossible/"
         },
         "geometry": {
           "coordinates": [

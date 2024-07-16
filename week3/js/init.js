@@ -124,10 +124,10 @@ function createButtons(latitude,longitude,title){
         playSound('sound');
         newButton.classList.add('rotate-animation');
 
-        // Remove class to reset animation after it completes
+        // reset after completion code
         setTimeout(function() {
             newButton.classList.remove('rotate-animation');
-        }, 600); // Adjust timing to match the animation duration
+        }, 600); // timing!
     });
 
     document.getElementById("contents").appendChild(newButton);
@@ -162,7 +162,12 @@ function processData(results){
         let name = results.features[i].properties.Name;
         let place = results.features[i].properties.Place;
         let room = results.features[i].properties.FavoriteRoom;
+        let link = results.features[i].properties.Link;
 
-        addMarker(latitude, longitude, name, `<span style="font-weight: 600;">Location:</span> ${place}<br><span style="font-weight: 600;">Favorite Room:</span> ${room}`);
+        let content = `<span style="font-weight: 600;">Location:</span> ${place}<br>`;
+        content += `<span style="font-weight: 600;">Favorite Room:</span> ${room}<br>`;
+        content += `<a href="${link}" target="_blank">Check it out!</a>`;
+
+        addMarker(latitude, longitude, name, content);    
     }
 }
