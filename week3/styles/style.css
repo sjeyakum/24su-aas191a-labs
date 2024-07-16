@@ -125,6 +125,20 @@ main {
    line-height: 1.0; /* for text */
 }
 
+/* Animation for rotating the background */
+@keyframes rotateBackground {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate-animation {
+    animation: rotateBackground 0.6s ease forwards;
+}
+
 /* typography */
 h1 {
     font-size: 2rem;

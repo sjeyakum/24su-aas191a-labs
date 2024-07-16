@@ -122,6 +122,12 @@ function createButtons(latitude,longitude,title){
             center: [longitude, latitude],
         });
         playSound('sound');
+        newButton.classList.add('rotate-animation');
+
+        // Remove class to reset animation after it completes
+        setTimeout(function() {
+            newButton.classList.remove('rotate-animation');
+        }, 600); // Adjust timing to match the animation duration
     });
 
     document.getElementById("contents").appendChild(newButton);
@@ -133,13 +139,6 @@ function playSound(soundId) {
     sound.currentTime = 0; // Restart sound from beginning
     sound.play();
 }
-
-// Example 
-const button = document.getElementById('button');
-
-button.addEventListener('click', function() {
-    playSound('sound');
-});
 
 // GeoJSON data
 map.on('load', function() {
