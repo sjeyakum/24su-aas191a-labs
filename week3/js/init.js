@@ -12,6 +12,7 @@ const map = new maplibregl.Map({
     zoom: mapObjects.zoomLevel
 });
 
+// keys
 function addMarker(lat,lng,title,message){
     let popup_message = `<h3>${title}</h3> <h4>${message}</h4>`
     
@@ -83,6 +84,8 @@ window.onload = function() {
     createPageLinks();
 };
 
+// puzzle piece buttons
+
 function createButtons(latitude,longitude,title){
     const newButton = document.createElement("button"); 
     newButton.id = "button" + title; 
@@ -120,6 +123,7 @@ function createButtons(latitude,longitude,title){
     newButton.addEventListener('click', function() {
         map.flyTo({
             center: [longitude, latitude],
+            essential: true
         });
         playSound('sound');
         newButton.classList.add('rotate-animation');
@@ -128,7 +132,7 @@ function createButtons(latitude,longitude,title){
         setTimeout(function() {
             newButton.classList.remove('rotate-animation');
         }, 600); // timing!
-    });
+        });
 
     document.getElementById("contents").appendChild(newButton);
 }
