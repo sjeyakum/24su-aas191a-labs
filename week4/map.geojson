@@ -1,0 +1,107 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "Name": "Unlocked",
+          "Place": "Costa Mesa",
+          "FavoriteRoom": "The Return of the Magician",
+          "Link": "https://unlockedoc.com/magic"
+        },
+        "geometry": {
+          "coordinates": [
+            -117.91853872552525,
+            33.67107390389724
+          ],
+          "type": "Point"
+        },
+        "id": 0
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "Name": "Enchanted Escape Room",
+          "Place": "Northridge",
+          "FavoriteRoom": "Spellbound",
+          "Link": "https://www.enchantedescaperoom.com/spellbound"
+        },
+        "geometry": {
+          "coordinates": [
+            -118.55320659094737,
+            34.220724073231935
+          ],
+          "type": "Point"
+        },
+        "id": 1
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "Name": "The Basement",
+          "Place": "Sylmar",
+          "FavoriteRoom": "Elevator Shaft",
+          "Link": "https://basementescaperoom.com/los-angeles/theelevatorshaft?gad_source=1&gclid=CjwKCAjwtNi0BhA1EiwAWZaANL8gsrtcgWeAKk_2FUxLwQRBMvIFVFtBGb-w3FisN5DXuik4sei8_BoCQ8kQAvD_BwE"
+        },
+        "geometry": {
+          "coordinates": [
+            -118.41555888347814,
+            34.294291875859315
+          ],
+          "type": "Point"
+        },
+        "id": 2
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "Name": "101 Escape Rooms",
+          "Place": "Thousand Oaks",
+          "FavoriteRoom": "Starship Libra",
+          "Link": "https://www.101escaperooms.com/starship-libra"
+        },
+        "geometry": {
+          "coordinates": [
+            -118.8860928655926,
+            34.18285543040392
+          ],
+          "type": "Point"
+        },
+        "id": 3
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "Name": "Maze Rooms",
+          "Place": "Los Angeles",
+          "FavoriteRoom": "Cyberpunk Samurai",
+          "Link": "https://mazerooms.com/rooms/cyberpunk-samurai/"
+        },
+        "geometry": {
+          "coordinates": [
+            -118.3983113331616,
+            33.98746815825165
+          ],
+          "type": "Point"
+        },
+        "id": 4
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "Name": "My Greatest Escape",
+          "Place": "Santa Paula",
+          "FavoriteRoom": "Mission Impossible",
+          "Link": "https://www.mygreatestescape.com/rooms/mission-impossible/"
+        },
+        "geometry": {
+          "coordinates": [
+            -119.0451372636755,
+            34.354403122785506
+          ],
+          "type": "Point"
+        },
+        "id": 5
+      }
+    ]
+  }
