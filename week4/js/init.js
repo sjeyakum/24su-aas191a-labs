@@ -13,20 +13,20 @@ const map = new maplibregl.Map({
 });
 
 // custom markers, keys
-function addMarker(lat,lng,title,message){
+function addMarker(lat,lng,title,message,keyType){
     let popup_message = `<h3>${title}</h3> <h4>${message}</h4>`
     
     // create custom marker 
     let marker = new maplibregl.Marker({
-            element: createCustomMarkerElement(keyType)
+        element: createCustomMarkerElement(keyType)
 
-        })       
+    })       
         .setLngLat([lng,lat])
         .setPopup(new maplibregl.Popup({
             maxWidth: "300px",
             className: "custom-popup"
         })
-        .setHTML(popup_message))
+            .setHTML(popup_message))
         .addTo(map);
 }
 
@@ -36,30 +36,32 @@ function createCustomMarkerElement(keyType) {
     let iconURL;
     switch (keyType) {
         case 'mint_key':
-            iconUrl = 'mint_key.png';
-        case 'coral_key':
-            iconUrl = 'coral_key.png';
-        case 'blue_key':
-            iconUrl = 'blue_key.png';
+            iconURL = 'mint_key.png';
             break;
-        default: 
-            iconUrl = 'key.png';
+        case 'coral_key':
+            iconURL = 'coral_key.png';
+            break;
+        case 'blue_key':
+            iconURL = 'blue_key.png';
+            break;
+        default:
+            iconURL = 'key.png';
     }
 
     let markerElement = document.createElement('div');
     markerElement.className = 'custom-marker';
-    markerElement.style.backgroundImage = `url('${iconUrl}')`;
+    markerElement.style.backgroundImage = `url('${iconURL}')`;
     markerElement.style.backgroundSize = 'cover';
     markerElement.style.width = '50px';
     markerElement.style.height = '50px';
     markerElement.style.cursor = 'pointer';
     markerElement.title = 'Marker';
 
-    markerElement.style.transition = "opacity 0.3s ease"; 
-    markerElement.addEventListener('mouseenter', function() {
+    markerElement.style.transition = "opacity 0.3s ease";
+    markerElement.addEventListener('mouseenter', function () {
         markerElement.style.opacity = 0.6;
     });
-    markerElement.addEventListener('mouseleave', function() {
+    markerElement.addEventListener('mouseleave', function () {
         markerElement.style.opacity = 1.5;
     });
 
@@ -120,20 +122,28 @@ function processData(results){
         content += `<span style="font-weight: 600;">Room:</span> ${room}<br>`;
         content += `<span style="font-weight: 600;">Comment:</span> ${comment}<br>`;
 
-        let keyType;
-        if (county.includes('Ventura')) {
-            keyType = 'mint_key';
-        } else if (county.includes('Orange')) {
-            keyType = 'coral_key';
-        } else if (county.includes('Los Angeles')) {
-            keyType = 'blue_key';
-        } else {
-            keyType = 'key';
-        }
+        if (completedEscapeRoom === "Yes") {
+            let content = `<span style="font-weight: 600;">Name:</span> ${location}<br>`;
+            content += `<span style="font-weight: 600;">Room:</span> ${room}<br>`;
+            content += `<span style="font-weight: 600;">Comment:</span> ${comment}<br>`;
 
-        addMarker(data.lat, data.lng, contet, keyType);
+            let keyType;
+            if (county.includes('Ventura')) {
+                keyType = 'mint_key';
+            } else if (county.includes('Orange')) {
+                keyType = 'coral_key';
+            } else if (county.includes('Los Angeles')) {
+                keyType = 'blue_key';
+            } else {
+                keyType = 'key';
+            }
+
+            addMarker(parseFloat(data.lat), parseFloat(data.lng), location, content, keyType);
+        }
     });
-};
+}
+
+
 
 // function addMarker(data) {
 //     let popup_message;
