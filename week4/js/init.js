@@ -1,4 +1,4 @@
-// week 3
+// week 4 variables
 let mapObjects = {
     "coordinate": [-118.4430,34.0691],
     "zoomLevel": 8
@@ -12,13 +12,13 @@ const map = new maplibregl.Map({
     zoom: mapObjects.zoomLevel
 });
 
-// keys
+// custom markers, keys
 function addMarker(lat,lng,title,message){
     let popup_message = `<h3>${title}</h3> <h4>${message}</h4>`
     
     // create custom marker 
     let marker = new maplibregl.Marker({
-            element: createCustomMarkerElement('key.png', title, message)
+            element: createCustomMarkerElement(keyType)
 
         })       
         .setLngLat([lng,lat])
@@ -28,12 +28,24 @@ function addMarker(lat,lng,title,message){
         })
         .setHTML(popup_message))
         .addTo(map);
-
-    createButtons(lat,lng,title);
-    return message;
 }
 
-function createCustomMarkerElement(iconUrl, title, message) {
+// key types
+
+function createCustomMarkerElement(keyType) {
+    let iconURL;
+    switch (keyType) {
+        case 'mint_key':
+            iconUrl = 'mint_key.png';
+        case 'coral_key':
+            iconUrl = 'coral_key.png';
+        case 'blue_key':
+            iconUrl = 'blue_key.png';
+            break;
+        default: 
+            iconUrl = 'key.png';
+    }
+
     let markerElement = document.createElement('div');
     markerElement.className = 'custom-marker';
     markerElement.style.backgroundImage = `url('${iconUrl}')`;
@@ -41,6 +53,7 @@ function createCustomMarkerElement(iconUrl, title, message) {
     markerElement.style.width = '50px';
     markerElement.style.height = '50px';
     markerElement.style.cursor = 'pointer';
+    markerElement.title = 'Marker';
 
     markerElement.style.transition = "opacity 0.3s ease"; 
     markerElement.addEventListener('mouseenter', function() {
@@ -50,11 +63,10 @@ function createCustomMarkerElement(iconUrl, title, message) {
         markerElement.style.opacity = 1.5;
     });
 
-    markerElement.title = title;
-    markerElement.message = message;
-
     return markerElement;
 }
+
+// return button
 
 function createReturnLink() {
     const returnDiv = document.getElementById('return');
@@ -82,77 +94,9 @@ window.onload = function() {
     createReturnLink();
 };
 
-
-// puzzle piece buttons
-
-function createButtons(latitude,longitude,title){
-    const newButton = document.createElement("button"); 
-    newButton.id = "button" + title; 
-    newButton.style.display = "inline-flex"; 
-    newButton.style.alignItems = "center";  
-    newButton.style.justifyContent = "center"; 
-    newButton.style.backgroundColor = 'transparent';
-    newButton.style.border = "none";
-    newButton.style.margin =  "10px";
-    newButton.style.cursor = "pointer"; 
-    newButton.style.fontSize = "16px";         
-    newButton.style.fontFamily = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
-    newButton.style.padding = "5px 10px";
-
-    newButton.style.backgroundImage = "url('puzzlepiece.png')"; // image URL
-    newButton.style.backgroundSize = "contain"; // contain or cover image in button
-    newButton.style.backgroundPosition = "center";
-    newButton.style.backgroundRepeat = "no-repeat"; 
-    newButton.style.width = "220px"; // button width
-    newButton.style.height = "100px"; // button height
-
-    // dim button
-    newButton.style.transition = "opacity 0.3s ease"; 
-    newButton.addEventListener('mouseenter', function() {
-        newButton.style.opacity = 0.6;
-    });
-    newButton.addEventListener('mouseleave', function() {
-        newButton.style.opacity = 1.5;
-    });
-
-    newButton.innerHTML += title; 
-
-    newButton.setAttribute("lat",latitude); 
-    newButton.setAttribute("lng",longitude); 
-    newButton.addEventListener('click', function() {
-        map.flyTo({
-            center: [longitude, latitude],
-            essential: true
-        });
-        playSound('sound');
-        newButton.classList.add('rotate-animation');
-
-        // reset after completion code
-        setTimeout(function() {
-            newButton.classList.remove('rotate-animation');
-        }, 600); // timing!
-        });
-
-    document.getElementById("contents").appendChild(newButton);
-}
-
-// Play sound function
-function playSound(soundId) {
-    const sound = document.getElementById(soundId);
-    sound.currentTime = 0; // Restart sound from beginning
-    sound.play();
-}
+// Google Form
 
 const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIdfMZVYK05649xvXyQp9JL6QZSoM_NaVawqEZz5tBx1sTcNiwA61_o8asg5XiI_dbzp1_sX8k8Xam/pub?gid=2128111423&single=true&output=csv";
-
-// When the map is fully loaded, start adding GeoJSON data
-map.on('load', function() {
-    fetch(dataUrl)
-        .then(response => response.json())
-        .then(data => {
-            processData(data); // Call processData with the fetched data
-        });
-});
 
 map.on('load', function() {
     Papa.parse(dataUrl, {
@@ -165,16 +109,50 @@ map.on('load', function() {
 });
 
 function processData(results){
-    console.log(results) //for debugging: this can help us see if the results are what we want
-    results.forEach(feature => {
-        //console.log(feature) // for debugging: are we seeing each feature correctly?
-        // assumes your geojson has a "title" and "message" attribute
-        // let coordinates = feature.geometry.coordinates;
-        let longitude = feature['lng']
-        let latitude = feature['lat'];
-        let location = feature['Please provide the name of one escape room location you completed.'];
-        let title = feature['Please provide the name of a room at this location.'];
-        let message = feature['Please share a few sentences of your experience!'];
-        addMarker(latitude,longitude,location,title,message);
+    // console.log(results) ; for debugging: this can help us see if the results are what we want
+    results.forEach(data => {
+        let location = data['Please provide the name of one escape room location you completed.'];
+        let room = data['Please provide the name of a room at this location.'];
+        let comment = data['Please share 1-2 sentences about your experience!'];
+        let county = data['Select one county in which you completed an escape room.'];
+
+        let content = `<span style="font-weight: 600;">Name:</span> ${location}<br>`;
+        content += `<span style="font-weight: 600;">Room:</span> ${room}<br>`;
+        content += `<span style="font-weight: 600;">Comment:</span> ${comment}<br>`;
+
+        let keyType;
+        if (county.includes('Ventura') {
+            keyType = 'mint_key';
+        } else if (county.includes('Orange')) {
+            keyType = 'coral_key';
+        } else if (county.includes('Los Angeles')) {
+            keyType = 'blue_key';
+        } else {
+            keyType = 'key';
+        }
+
+        addMarker(data.lat, data.lng, contet, keyType);
     });
 };
+
+// function addMarker(data) {
+//     let popup_message;
+//     let longitude = data['lng']
+//     let latitude = data['lat'];
+//     if (data['Have you completed an escape room before in either Ventura, Orange, or Los Angeles County?'] == "Yes") {
+//         popup_message = `<h2>Vaccinated</h2> <h3>Location: ${data['Where did you get vaccinated?']}</h3> <p>Zip Code: ${data['What zip code do you live in?']}</p>`
+//     }
+//     else {
+//         popup_message = none
+//     }
+    
+//     new maplibregl.Marker() {
+//         .setLngLat([lng, lat])
+//         .setPopup(new maplibregl.Popup()
+//             .setHTML(popup_message))
+//         .addTo(map)
+//     }
+
+//     let message = feature['Please share 1-2 sentences about your experience!'];
+//     addMarker(latitude,longitude,location,title,message);
+// };
