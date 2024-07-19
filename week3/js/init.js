@@ -84,6 +84,32 @@ window.onload = function() {
     createPageLinks();
 };
 
+function createSurveyLink() {
+    const surveyDiv = document.getElementById('survey');
+
+    const survey = [
+        { text: 'Take Survey', link: 'https://sjeyakum.github.io/24su-aas191a-labs/week4/index.html' }
+    ];
+
+    survey.forEach(item => {
+        const a = document.createElement('a');
+        a.href = item.link;
+        a.style.marginRight = '10px'; // Add some spacing between the buttons
+
+        const button = document.createElement('button');
+        button.textContent = item.text;
+        button.classList.add('pagelink-button');
+        button.style.display = 'inline-block'; // Ensure the button is displayed inline
+
+        a.appendChild(button);
+        surveyDiv.appendChild(a);
+    });
+}
+
+window.onload = function() {
+    createSurveyLink();
+};
+
 // puzzle piece buttons
 
 function createButtons(latitude,longitude,title){

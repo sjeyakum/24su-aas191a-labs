@@ -96,6 +96,13 @@ main {
     gap: 10px;
 }
 
+#survey {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 .pagelink-button {
     display: inline-block;
     background-color: white;

@@ -60,9 +60,7 @@ function createPageLinks() {
     const labsDiv = document.getElementById('labs');
 
     const labs = [
-        { text: 'Lab #1', link: 'https://sjeyakum.github.io/24su-aas191a-labs/week1/index.html' },
-        { text: 'Lab #2', link: 'https://sjeyakum.github.io/24su-aas191a-labs/week2/index.html' },
-        { text: 'Lab #3', link: 'https://sjeyakum.github.io/24su-aas191a-labs/week3/index.html' }
+        { text: 'Return', link: 'https://sjeyakum.github.io/24su-aas191a-labs/week3/index.html' }
     ];
 
     labs.forEach(lab => {
