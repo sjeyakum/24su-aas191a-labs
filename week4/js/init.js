@@ -144,34 +144,38 @@ function playSound(soundId) {
     sound.play();
 }
 
-// GeoJSON data
-map.on('load', function() {
-    console.log("This is the map!")
+const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIdfMZVYK05649xvXyQp9JL6QZSoM_NaVawqEZz5tBx1sTcNiwA61_o8asg5XiI_dbzp1_sX8k8Xam/pub?gid=2128111423&single=true&output=csv";
 
-    fetch("map.geojson")
+// When the map is fully loaded, start adding GeoJSON data
+map.on('load', function() {
+    fetch(dataUrl)
         .then(response => response.json())
         .then(data => {
             processData(data); // Call processData with the fetched data
-        })
-        .catch(error => console.error('Error fetching GeoJSON: ', error));
+        });
+});
+
+map.on('load', function() {
+    Papa.parse(dataUrl, {
+        download: true,
+        header: true,
+        complete: (results) => {
+            processData(results.data);
+        }
+    });
 });
 
 function processData(results){
-    console.log(results)
-    // results.features.forEach(result => {
-    for (let i = 0; i < results.features.length; i++) {
-        let coordinates = results.features[i].geometry.coordinates;  // coordinates array      
-        let longitude = coordinates[0]
-        let latitude = coordinates[1]
-        let name = results.features[i].properties.Name;
-        let place = results.features[i].properties.Place;
-        let room = results.features[i].properties.FavoriteRoom;
-        let link = results.features[i].properties.Link;
-
-        let content = `<span style="font-weight: 600;">Location:</span> ${place}<br>`;
-        content += `<span style="font-weight: 600;">Favorite Room:</span> ${room}<br>`;
-        content += `<a href="${link}" target="_blank">Check it out!</a>`;
-
-        addMarker(latitude, longitude, name, content);    
-    }
-}
+    console.log(results) //for debugging: this can help us see if the results are what we want
+    results.forEach(feature => {
+        //console.log(feature) // for debugging: are we seeing each feature correctly?
+        // assumes your geojson has a "title" and "message" attribute
+        // let coordinates = feature.geometry.coordinates;
+        let longitude = feature['lng']
+        let latitude = feature['lat'];
+        let location = feature['Please provide the name of one escape room location you completed.'];
+        let title = feature['Please provide the name of a room at this location.'];
+        let message = feature['Please share a few sentences of your experience!'];
+        addMarker(latitude,longitude,location,title,message);
+    });
+};
