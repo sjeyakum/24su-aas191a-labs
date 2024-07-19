@@ -56,31 +56,32 @@ function createCustomMarkerElement(iconUrl, title, message) {
     return markerElement;
 }
 
-function createPageLinks() {
-    const labsDiv = document.getElementById('labs');
+function createReturnLink() {
+    const returnDiv = document.getElementById('return');
 
-    const labs = [
+    const returnLinks = [
         { text: 'Return', link: 'https://sjeyakum.github.io/24su-aas191a-labs/week3/index.html' }
     ];
 
-    labs.forEach(lab => {
+    returnLinks.forEach(item => {
         const a = document.createElement('a');
-        a.href = lab.link;
+        a.href = item.link;
         a.style.marginRight = '10px'; // Add some spacing between the buttons
-        
+
         const button = document.createElement('button');
-        button.textContent = lab.text;
+        button.textContent = item.text;
         button.classList.add('pagelink-button');
         button.style.display = 'inline-block'; // Ensure the buttons are displayed inline
-        
+
         a.appendChild(button);
-        labsDiv.appendChild(a);
+        returnDiv.appendChild(a); // Append to returnDiv, not return
     });
 }
 
 window.onload = function() {
-    createPageLinks();
+    createReturnLink();
 };
+
 
 // puzzle piece buttons
 

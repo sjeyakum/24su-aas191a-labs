@@ -101,6 +101,32 @@ main {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+#survey a {
+    text-decoration: none; 
+}
+
+#survey button {
+    padding: 16px 40px; /* Adjust padding for button size */
+    font-size: 1rem; /* Adjust font size */
+    min-width: 150px; /* Ensure button is wide enough for the text */
+    border-radius: 8px;
+    background-color: #480d79;
+    color: white;
+    border: none;
+    cursor: pointer; /* Add pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    text-align: center; /* Center-align button text */
+    line-height: 1; /* Ensure text is centered vertically */
+    width: auto; /* Ensure button width adjusts to content */
+}
+
+#survey button:hover {
+    opacity: 0.6;
+    background-color: #583871; /* Darker shade on hover */
 }
 
 .pagelink-button {
@@ -178,4 +204,16 @@ p {
     padding-top: 20px;
     font-size: 1.5rem;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* General styles for all paragraphs */
 }
+
+main p {
+    font-size: 1.0rem; /* Adjusted font size for the main paragraph */
+    text-align: center;
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    color: #480d79;
+    margin: 10px 0;
+    /* Specific styles for paragraphs within the main element */
+}
+

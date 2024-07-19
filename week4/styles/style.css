@@ -88,7 +88,7 @@ main {
     margin: 0px; /* Adjust margin as needed */
 }
 
-#labs{
+#return {
     grid-area: header;
     display: flex;
     justify-content: center;

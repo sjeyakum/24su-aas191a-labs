@@ -69,12 +69,12 @@ function createPageLinks() {
         const a = document.createElement('a');
         a.href = lab.link;
         a.style.marginRight = '10px'; // Add some spacing between the buttons
-        
+
         const button = document.createElement('button');
         button.textContent = lab.text;
         button.classList.add('pagelink-button');
         button.style.display = 'inline-block'; // Ensure the buttons are displayed inline
-        
+
         a.appendChild(button);
         labsDiv.appendChild(a);
     });
@@ -87,23 +87,23 @@ window.onload = function() {
 function createSurveyLink() {
     const surveyDiv = document.getElementById('survey');
 
-    const survey = [
-        { text: 'Take Survey', link: 'https://sjeyakum.github.io/24su-aas191a-labs/week4/index.html' }
-    ];
+    // Define the link and text for the survey button
+    const surveyLink = 'https://sjeyakum.github.io/24su-aas191a-labs/week4/index.html';
+    const surveyText = 'Take Survey';
 
-    survey.forEach(item => {
-        const a = document.createElement('a');
-        a.href = item.link;
-        a.style.marginRight = '10px'; // Add some spacing between the buttons
+    // Create the anchor element (link)
+    const a = document.createElement('a');
+    a.href = surveyLink;
+    a.style.textDecoration = 'none'; // Optional: Remove underline from link
 
-        const button = document.createElement('button');
-        button.textContent = item.text;
-        button.classList.add('pagelink-button');
-        button.style.display = 'inline-block'; // Ensure the button is displayed inline
+    // Create the button element
+    const button = document.createElement('button');
+    button.textContent = surveyText;
+    button.classList.add('survey-button'); // Optional: Add a class for styling
 
-        a.appendChild(button);
-        surveyDiv.appendChild(a);
-    });
+    // Append the button to the anchor element, and anchor element to surveyDiv
+    a.appendChild(button);
+    surveyDiv.appendChild(a);
 }
 
 window.onload = function() {
