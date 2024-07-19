@@ -121,7 +121,7 @@ function processData(results){
         content += `<span style="font-weight: 600;">Comment:</span> ${comment}<br>`;
 
         let keyType;
-        if (county.includes('Ventura') {
+        if (county.includes('Ventura')) {
             keyType = 'mint_key';
         } else if (county.includes('Orange')) {
             keyType = 'coral_key';
