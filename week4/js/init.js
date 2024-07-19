@@ -12,24 +12,6 @@ const map = new maplibregl.Map({
     zoom: mapObjects.zoomLevel
 });
 
-// custom markers, keys
-function addMarker(lat,lng,title,message,keyType){
-    let popup_message = `<h3>${title}</h3> <h4>${message}</h4>`
-    
-    // create custom marker 
-    let marker = new maplibregl.Marker({
-        element: createCustomMarkerElement(keyType)
-
-    })       
-        .setLngLat([lng,lat])
-        .setPopup(new maplibregl.Popup({
-            maxWidth: "300px",
-            className: "custom-popup"
-        })
-            .setHTML(popup_message))
-        .addTo(map);
-}
-
 // key types
 
 function createCustomMarkerElement(keyType) {
@@ -110,13 +92,38 @@ map.on('load', function() {
     });
 });
 
+function addMarker(data){
+    let popup_message = `<h3>${title}</h3> <h4>${message}</h4>`
+
+    // let lng = data['lng'];
+    // let lat = data['lat'];
+    // if (data['Have you completed an escape room before in either Ventura, Orange, or Los Angeles County?'] == "Yes"){
+    //     popup_message = `<h2>Vaccinated</h2> <h3>Location: ${data['Where did you get vaccinated?']}</h3> <p>Zip Code: ${data['What zip code do you live in?']}</p>`
+    // }
+    // else{
+    //     popup_message = `<h2>Not Vaccinated</h2><p>Zip Code: ${data['What zip code do you live in?']}</p>`
+    // }
+
+    new maplibregl.Marker({
+        element: createCustomMarkerElement(keyType)
+    })       
+        .setLngLat([lng,lat])
+        .setPopup(new maplibregl.Popup({
+            maxWidth: "300px",
+            className: "custom-popup"
+        })
+            .setHTML(popup_message))
+        .addTo(map);
+}
+
+
 function processData(results){
-    // console.log(results) ; for debugging: this can help us see if the results are what we want
+    // console.log(results) // for debugging: this can help us see if the results are what we want
     results.forEach(data => {
         let location = data['Please provide the name of one escape room location you completed.'];
         let room = data['Please provide the name of a room at this location.'];
         let comment = data['Please share 1-2 sentences about your experience!'];
-        let county = data['Select one county in which you completed an escape room.'];
+        let county = data['Select one county in which you completed an escape room. '];
 
         let content = `<span style="font-weight: 600;">Name:</span> ${location}<br>`;
         content += `<span style="font-weight: 600;">Room:</span> ${room}<br>`;
@@ -143,26 +150,3 @@ function processData(results){
     });
 }
 
-
-
-// function addMarker(data) {
-//     let popup_message;
-//     let longitude = data['lng']
-//     let latitude = data['lat'];
-//     if (data['Have you completed an escape room before in either Ventura, Orange, or Los Angeles County?'] == "Yes") {
-//         popup_message = `<h2>Vaccinated</h2> <h3>Location: ${data['Where did you get vaccinated?']}</h3> <p>Zip Code: ${data['What zip code do you live in?']}</p>`
-//     }
-//     else {
-//         popup_message = none
-//     }
-    
-//     new maplibregl.Marker() {
-//         .setLngLat([lng, lat])
-//         .setPopup(new maplibregl.Popup()
-//             .setHTML(popup_message))
-//         .addTo(map)
-//     }
-
-//     let message = feature['Please share 1-2 sentences about your experience!'];
-//     addMarker(latitude,longitude,location,title,message);
-// };
