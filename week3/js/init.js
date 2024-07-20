@@ -68,21 +68,13 @@ function createPageLinks() {
     labs.forEach(lab => {
         const a = document.createElement('a');
         a.href = lab.link;
-        a.style.marginRight = '10px'; // Add some spacing between the buttons
-
-        const button = document.createElement('button');
-        button.textContent = lab.text;
-        button.classList.add('pagelink-button');
-        button.style.display = 'inline-block'; // Ensure the buttons are displayed inline
-
-        a.appendChild(button);
+        a.textContent = lab.text;
+        a.classList.add('pagelink-button'); // Apply a class for button-like styling
         labsDiv.appendChild(a);
     });
 }
 
-window.onload = function() {
-    createPageLinks();
-};
+// survey button
 
 function createSurveyLink() {
     const surveyDiv = document.getElementById('survey');
@@ -107,6 +99,7 @@ function createSurveyLink() {
 }
 
 window.onload = function() {
+    createPageLinks();
     createSurveyLink();
 };
 
