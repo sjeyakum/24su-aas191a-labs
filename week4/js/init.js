@@ -57,7 +57,7 @@ function addMarker(data){
         keyType = 'mint_key';
     } else if (success.includes('No')) {
         keyType = 'coral_key';
-    } else if (success.includes('So close!')) {
+    } else if (success.includes('So close! (was on the last clue)')) {
         keyType = 'blue_key';
     } else {
         keyType = 'key'; // Default marker if location doesn't match expected values
