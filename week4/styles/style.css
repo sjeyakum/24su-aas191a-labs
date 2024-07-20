@@ -28,7 +28,7 @@ body {
 main {
     display: grid;
     grid-template-areas:
-        "portfolio map";
+        "portfolio map legend";
     grid-template-columns: 1fr 1fr;
     padding: 10px;
 }
@@ -64,15 +64,21 @@ main {
 
 /* Legend */
 #legend {
-    grid-area: main;
-    height: 30vh;
+    grid-area: legend;
+    height: 80vh;
     padding-left: 20px;
     /* Additional styling as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
 }
 
 .legend-item {
     display: flex;
     align-items: center;
+    height: 70px;
+    width: 200px;
     padding: 10px;
     margin-bottom: 5px;
     background-color: #f0f0f0; /* Example background color */
@@ -97,7 +103,7 @@ main {
 }
 
 .legend-item.blue img {
-    filter: hue-rotate(110deg) saturate(150%); /* Apply filter and saturation to blue key */
+    filter: none; /* Blue key has no filter */
 }
 
 #footer {

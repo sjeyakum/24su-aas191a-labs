@@ -99,8 +99,7 @@ function createCustomMarkerElement(keyType) {
             markerElement.style.backgroundImage = 'url(coral_key.png)';
             break;
         case 'blue_key':
-            markerElement.style.backgroundImage = 'url(mint_key.png)';
-            markerElement.style.filter = 'hue-rotate(110deg) saturate(150%)'; // Adjust values as needed
+            markerElement.style.backgroundImage = 'url(blue_key.png)';
             break;
         default:
             markerElement.style.backgroundImage = 'url(key.png)'; // should not show up
