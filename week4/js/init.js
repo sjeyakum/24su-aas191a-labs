@@ -135,16 +135,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Add event listener for default view button
+    // default view button
     defaultViewButton.addEventListener('click', function() {
         showAllMarkers();
     });
 
-    showAllMarkers();
-
     legendButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Determine which type of key markers to show based on button click
 
             let markerType;
             if (button.id === 'mint_key_button') {

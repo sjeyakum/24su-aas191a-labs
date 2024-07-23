@@ -82,7 +82,11 @@ main {
     padding: 10px;
     margin-bottom: 5px;
     background-color: #f0f0f0; /* Example background color */
-    border-radius: 5px;
+    border-radius: 30px;
+}
+
+.legend-item.all {
+    background-color: #fffea8; /* Example background color */
 }
 
 .legend-item img {
@@ -107,8 +111,11 @@ main {
 }
 
 .legend-item.all img {
+    width: 50px; /* Adjust image width */
+    margin-right: 10px; /* Adjust spacing between image and text */
+    transition: filter 0.3s ease;
     filter: none; /* Blue key has no filter */
-    width: 100px;
+    height: 30px;
 }
 
 #footer {
