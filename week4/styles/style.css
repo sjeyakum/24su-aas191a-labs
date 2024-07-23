@@ -81,12 +81,12 @@ main {
     width: 200px;
     padding: 10px;
     margin-bottom: 5px;
-    background-color: #f0f0f0; /* Example background color */
+    background-color: #fffdb8; /* Example background color */
     border-radius: 30px;
 }
 
 .legend-item.all {
-    background-color: #fffea8; /* Example background color */
+    background-color: #ffdf52; /* Example background color */
 }
 
 .legend-item img {

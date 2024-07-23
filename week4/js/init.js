@@ -128,21 +128,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const legendButtons = document.querySelectorAll('.legend-item');
     const defaultViewButton = document.getElementById('default_view_button');
 
-    function showAllMarkers() {
-        const allMarkers = document.querySelectorAll('.map-marker');
-        allMarkers.forEach(marker => {
-            marker.style.display = 'block';
-        });
+    // Function to reload the page
+    function reloadMap() {
+        location.reload();
     }
 
-    // default view button
+    // Event listener for Default View button to reload the page
     defaultViewButton.addEventListener('click', function() {
-        showAllMarkers();
+        reloadMap();
     });
+
 
     legendButtons.forEach(button => {
         button.addEventListener('click', function() {
-
             let markerType;
             if (button.id === 'mint_key_button') {
                 markerType = 'mint_key';
@@ -152,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 markerType = 'blue_key';
             }
 
-            // Toggle visibility of markers based on button click
             const allMarkers = document.querySelectorAll('.map-marker');
             allMarkers.forEach(marker => {
                 const markerKey = marker.getAttribute('data-key-type');
@@ -164,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-            // Adjust opacity of all buttons
+            // reset opacity for all legend buttons
             legendButtons.forEach(btn => {
                 btn.style.opacity = 1.0;
             });
@@ -181,6 +178,8 @@ document.addEventListener('DOMContentLoaded', function() {
             button.style.opacity = 1.0;
         });
     });
+    return legendButtons;
+    return defaultViewButton;
 });
 
 const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIdfMZVYK05649xvXyQp9JL6QZSoM_NaVawqEZz5tBx1sTcNiwA61_o8asg5XiI_dbzp1_sX8k8Xam/pub?gid=2128111423&single=true&output=csv";
