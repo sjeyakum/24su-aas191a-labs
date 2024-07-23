@@ -83,10 +83,14 @@ main {
     margin-bottom: 5px;
     background-color: #ffffff; /* Example background color */
     border-radius: 30px;
+    border-color: black;
+    border-width: 3px;
 }
 
 .legend-item.all {
     background-color: #f5ffa8; /* Example background color */
+    border-color: black;
+    border-width: 3px;
 }
 
 .legend-item img {
