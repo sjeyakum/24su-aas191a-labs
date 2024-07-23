@@ -92,6 +92,8 @@ function createCustomMarkerElement(keyType) {
     markerElement.style.backgroundSize = 'contain';
     markerElement.classList.add('map-marker'); // new
 
+    markerElement.setAttribute('data-key-type', keyType);
+
     switch (keyType) {
         case 'mint_key':
             markerElement.style.backgroundImage = 'url(mint_key.png)';
@@ -123,40 +125,65 @@ function createCustomMarkerElement(keyType) {
 
 // change marker visibility with legend buttons 
 document.addEventListener('DOMContentLoaded', function() {
-    const mintButton = document.getElementById('mint_key_button');
-    const coralButton = document.getElementById('coral_key_button');
-    const blueButton = document.getElementById('blue_key_button');
+    const legendButtons = document.querySelectorAll('.legend-item');
+    const defaultViewButton = document.getElementById('default_view_button');
 
-    const mintMarkers = document.querySelectorAll('.mint-marker');
-    const coralMarkers = document.querySelectorAll('.coral-marker');
-    const blueMarkers = document.querySelectorAll('.blue-marker');
-
-    // Function to toggle marker visibility based on button click
-    function toggleMarkerVisibility(button, markersToShow) {
-        button.addEventListener('click', function() {
-            // Hide all markers first
-            mintMarkers.forEach(marker => marker.style.display = 'none');
-            coralMarkers.forEach(marker => marker.style.display = 'none');
-            blueMarkers.forEach(marker => marker.style.display = 'none');
-            
-            // Show only the markers corresponding to the clicked button
-            markersToShow.forEach(marker => marker.style.display = 'block');
-            
-            // Reset opacity of all buttons
-            const allButtons = document.querySelectorAll('.legend-item');
-            allButtons.forEach(btn => {
-                btn.style.opacity = 1.0;
-            });
-            
-            // Adjust opacity of clicked button
-            button.style.opacity = 0.7;
+    function showAllMarkers() {
+        const allMarkers = document.querySelectorAll('.map-marker');
+        allMarkers.forEach(marker => {
+            marker.style.display = 'block';
         });
     }
 
-    // Attach event listeners to each button and toggle markers accordingly
-    toggleMarkerVisibility(mintButton, mintMarkers);
-    toggleMarkerVisibility(coralButton, coralMarkers);
-    toggleMarkerVisibility(blueButton, blueMarkers);
+    // Add event listener for default view button
+    defaultViewButton.addEventListener('click', function() {
+        showAllMarkers();
+    });
+
+    showAllMarkers();
+
+    legendButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Determine which type of key markers to show based on button click
+
+            let markerType;
+            if (button.id === 'mint_key_button') {
+                markerType = 'mint_key';
+            } else if (button.id === 'coral_key_button') {
+                markerType = 'coral_key';
+            } else if (button.id === 'blue_key_button') {
+                markerType = 'blue_key';
+            }
+
+            // Toggle visibility of markers based on button click
+            const allMarkers = document.querySelectorAll('.map-marker');
+            allMarkers.forEach(marker => {
+                const markerKey = marker.getAttribute('data-key-type');
+
+                if (markerKey === markerType) {
+                    marker.style.display = 'block';
+                } else {
+                    marker.style.display = 'none';
+                }
+            });
+
+            // Adjust opacity of all buttons
+            legendButtons.forEach(btn => {
+                btn.style.opacity = 1.0;
+            });
+
+            // Adjust opacity of clicked button
+            button.style.opacity = 0.7;
+        });
+
+        button.addEventListener('mouseenter', function() {
+            button.style.opacity = 0.7;
+        });
+
+        button.addEventListener('mouseleave', function() {
+            button.style.opacity = 1.0;
+        });
+    });
 });
 
 const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIdfMZVYK05649xvXyQp9JL6QZSoM_NaVawqEZz5tBx1sTcNiwA61_o8asg5XiI_dbzp1_sX8k8Xam/pub?gid=2128111423&single=true&output=csv";
